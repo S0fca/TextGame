@@ -50,4 +50,19 @@ public class Location {
                 + "Right: " + ((right != null) ? right.name : "void") + " ";
     }
 
+    public Location getUp() {
+        return up;
+    }
+
+    public Location getDown() {
+        return down;
+    }
+
+    public Location getLeft() {
+        return left;
+    }
+
+    public Location getRight() {
+        return right;
+    }
 }

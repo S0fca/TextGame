@@ -1,5 +1,3 @@
-import Commands.Console;
-
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -10,10 +8,7 @@ public class World {
 
     private Player player = new Player();
     private ArrayList<Location> locations = new ArrayList<>();
-    Console console = new Console();
-    private int width;
-    private int height;
-
+    Console console = new Console(player);
 
     public World() {
         loadFile();
@@ -45,8 +40,8 @@ public class World {
                 locations.add(new Location(line.charAt(j)));
             }
         }
-        height = lines.size() - lines.size() / 2;
-        width = locations.size() / height;
+        int height = lines.size() - lines.size() / 2;
+        int width = locations.size() / height;
         for (int i = 0; i < locations.size(); i++) {
             Location l = locations.get(i);
             if (l.getName() == null) {

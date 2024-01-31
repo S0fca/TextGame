@@ -1,15 +1,23 @@
-package Commands;
-
 import java.util.HashMap;
 import java.util.Scanner;
 
 public class Console {
 
+    Player player;
+
+    public Console(Player player) {
+        this.player = player;
+    }
+
     private boolean exit = false;
     private final HashMap<String, Command> map = new HashMap<>();
 
     public void initialization() {
-        map.put("up", new MoveUp());
+        map.put("up", new MoveUp(player));
+        map.put("down", new MoveDown(player));
+        map.put("left", new MoveLeft(player));
+        map.put("right", new MoveRight(player));
+
     }
 
     private void execute() {
