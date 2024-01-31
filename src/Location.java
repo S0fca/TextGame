@@ -2,7 +2,6 @@ public class Location {
 
     private String name;
     private Location up;
-    private boolean goUp;
     private Location down;
     private Location left;
     private Location right;
@@ -17,12 +16,12 @@ public class Location {
 
     public void setName(char name) {
         switch (name) {
-            case '0' -> this.name = null;
-            case '1' -> this.name = "1";
+            case '0' -> this.name = "void";
+            case '1' -> this.name = "Start";
             case '2' -> this.name = "2";
             case '3' -> this.name = "3";
             case '4' -> this.name = "4";
-            case '5' -> this.name = "5";
+            case '5' -> this.name = "End";
         }
     }
 
@@ -44,14 +43,11 @@ public class Location {
 
     @Override
     public String toString() {
-        return  "\nName: " + name + " "
+        return "Name: " + name + " "
                 + "Up: " + ((up != null) ? up.name : "void") + " "
                 + "Down: " + ((down != null) ? down.name : "void") + " "
                 + "Left: " + ((left != null) ? left.name : "void") + " "
                 + "Right: " + ((right != null) ? right.name : "void") + " ";
     }
 
-    public void setGoUp(boolean goUp) {
-        this.goUp = goUp;
-    }
 }

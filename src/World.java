@@ -1,3 +1,5 @@
+import Commands.Console;
+
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -6,9 +8,12 @@ import java.util.ArrayList;
 
 public class World {
 
+    private Player player = new Player();
     private ArrayList<Location> locations = new ArrayList<>();
+    Console console = new Console();
     private int width;
     private int height;
+
 
     public World() {
         loadFile();
@@ -30,9 +35,13 @@ public class World {
     }
 
     public void setWorld(ArrayList<String> lines) {
+        int start = 0;
+        int end = 0;
         for (int i = 0; i < lines.size(); i += 2) {
             String line = lines.get(i);
-            for (int j = 0; j < line.length(); j += 4) {//each location
+            for (int j = 0; j < line.length(); j += 4) {
+                if (line.charAt(j) == '1') start++;
+                if (line.charAt(j) == '5') end++;
                 locations.add(new Location(line.charAt(j)));
             }
         }
@@ -40,12 +49,21 @@ public class World {
         width = locations.size() / height;
         for (int i = 0; i < locations.size(); i++) {
             Location l = locations.get(i);
-            if (l.getName() == null) continue;
+            if (l.getName() == null) {
+                l.setName('0');
+                continue;
+            }
             if (i != 0 && (i % width) != 0) l.setLeft(locations.get(i - 1));
-            if (i != locations.size() && ((i+1) % 4) != 0) l.setRight(locations.get(i + 1));
+            if (i != locations.size() && ((i + 1) % 4) != 0) l.setRight(locations.get(i + 1));
             if (i < locations.size() - width) l.setDown(locations.get(i + width));
             if (i >= width) l.setUp(locations.get(i - width));
+            if (l.getName().equals("Start")) player.setCurrentLocation(l);
         }
-        System.out.println(locations);
+        if (start == 1 && end == 1) {
+            System.out.println("World successfully loaded");
+            console.start();
+        } else {
+            System.out.println("World loaded unsuccessfully :(");
+        }
     }
 }

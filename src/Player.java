@@ -7,4 +7,11 @@ public class Player {
 
     }
 
+    public void setCurrentLocation(Location currentLocation) {
+        this.currentLocation = currentLocation;
+    }
+
+    public Location getCurrentLocation() {
+        return currentLocation;
+    }
 }

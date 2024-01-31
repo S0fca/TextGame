@@ -12,13 +12,11 @@ public class Console {
         map.put("up", new MoveUp());
     }
 
-    private final Scanner scanner = new Scanner(System.in);
-
     private void execute() {
+        Scanner scanner = new Scanner(System.in);
         System.out.print(">> ");
         String command = scanner.nextLine();
-        command = command.trim();
-        command = command.toLowerCase();
+        command = command.trim().toLowerCase();
         if (map.containsKey(command)) {
             System.out.println(">> " + map.get(command).execute());
             exit = map.get(command).exit();
