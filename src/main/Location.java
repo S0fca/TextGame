@@ -1,5 +1,7 @@
 package main;
 
+import java.util.ArrayList;
+
 public class Location {
 
     private String name;
@@ -7,6 +9,7 @@ public class Location {
     private Location down;
     private Location left;
     private Location right;
+    private ArrayList<Item> items = new ArrayList<>();
 
     public Location(char name) {
         setName(name);
@@ -20,10 +23,13 @@ public class Location {
         switch (name) {
             case '0' -> this.name = "void";
             case '1' -> this.name = "Start";
-            case '2' -> this.name = "2";
-            case '3' -> this.name = "3";
-            case '4' -> this.name = "4";
-            case '5' -> this.name = "End";
+            case '2' -> this.name = "Forest";
+            case '3' -> this.name = "Meadow";
+            case '4' -> this.name = "Hills";
+            case '5' -> this.name = "Mountains";
+            case '6' -> this.name = "House";
+            case '7' -> this.name = "Desert";
+            case '8' -> this.name = "End";
         }
     }
 

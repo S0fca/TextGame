@@ -8,9 +8,7 @@ import java.util.ArrayList;
 
 public class World {
 
-    private Player player = new Player();
     private ArrayList<Location> locations = new ArrayList<>();
-    Console console = new Console(player);
 
     public World() {
         loadFile();
@@ -54,13 +52,16 @@ public class World {
             if (i != locations.size() && ((i + 1) % 4) != 0) l.setRight(locations.get(i + 1));
             if (i < locations.size() - width) l.setDown(locations.get(i + width));
             if (i >= width) l.setUp(locations.get(i - width));
-            if (l.getName().equals("Start")) player.setCurrentLocation(l);
         }
         if (start == 1 && end == 1) {
             System.out.println("World successfully loaded");
-            console.start();
         } else {
             System.out.println("World loaded unsuccessfully :(");
+            System.exit(0);
         }
+    }
+
+    public ArrayList<Location> getLocations() {
+        return locations;
     }
 }
