@@ -1,14 +1,17 @@
-public class MoveDown implements Command{
+package main.commands;
+import main.Player;
+
+public class MoveRight implements Command {
 
     Player player;
 
-    public MoveDown(Player player) {
+    public MoveRight(Player player) {
         this.player = player;
     }
 
     @Override
     public String execute() {
-        player.moveDown();
+        player.moveRight();
         return player.getCurrentLocation().toString();
     }
 

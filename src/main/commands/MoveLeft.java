@@ -1,4 +1,7 @@
-public class MoveLeft implements Command{
+package main.commands;
+import main.Player;
+
+public class MoveLeft implements Command {
 
     Player player;
 

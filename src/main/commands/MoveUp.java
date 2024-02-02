@@ -1,3 +1,6 @@
+package main.commands;
+import main.Player;
+
 public class MoveUp implements Command {
 
     Player player;

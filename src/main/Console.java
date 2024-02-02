@@ -1,3 +1,7 @@
+package main;
+
+import main.commands.*;
+
 import java.util.HashMap;
 import java.util.Scanner;
 

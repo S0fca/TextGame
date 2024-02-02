@@ -1,3 +1,5 @@
+package main;
+
 public class Player {
 
     private Location currentLocation;
@@ -5,25 +7,25 @@ public class Player {
 
     public void moveUp() {
         if (currentLocation.getUp() != null) {
-            if (currentLocation.getUp().getName() != "void") currentLocation = currentLocation.getUp();
+            if (!currentLocation.getUp().getName().equals("void")) currentLocation = currentLocation.getUp();
         }
     }
 
     public void moveDown() {
         if (currentLocation.getDown() != null) {
-            if (currentLocation.getDown().getName() != "void") currentLocation = currentLocation.getDown();
+            if (!currentLocation.getDown().getName().equals("void")) currentLocation = currentLocation.getDown();
         }
     }
 
     public void moveLeft() {
         if (currentLocation.getLeft() != null) {
-            if (currentLocation.getLeft().getName() != "void") currentLocation = currentLocation.getLeft();
+            if (!currentLocation.getLeft().getName().equals("void")) currentLocation = currentLocation.getLeft();
         }
     }
 
     public void moveRight() {
         if (currentLocation.getRight() != null) {
-            if (currentLocation.getRight().getName() != "void") currentLocation = currentLocation.getRight();
+            if (!currentLocation.getRight().getName().equals("void")) currentLocation = currentLocation.getRight();
         }
     }
 
