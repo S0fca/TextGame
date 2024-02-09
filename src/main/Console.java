@@ -21,7 +21,9 @@ public class Console {
         map.put("down", new MoveDown(player));
         map.put("left", new MoveLeft(player));
         map.put("right", new MoveRight(player));
-
+        map.put("commands", new Commands(map));
+        map.put("explore", new Explore(player));
+        map.put("leave", new Leave());
     }
 
     private void execute() {
@@ -30,11 +32,9 @@ public class Console {
         String command = scanner.nextLine();
         command = command.trim().toLowerCase();
         if (map.containsKey(command)) {
-            System.out.println(">> " + map.get(command).execute());
+            System.out.println(map.get(command).execute());
             exit = map.get(command).exit();
-        } else {
-            System.out.println(">> Unknown command");
-        }
+        } else System.out.println("Unknown command");
     }
 
     public void start() {

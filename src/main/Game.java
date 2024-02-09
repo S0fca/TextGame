@@ -2,8 +2,8 @@ package main;
 
 public class Game {
 
-    private World world;
-    private Player player = new Player();
+    private final World world;
+    private final Player player = new Player();
 
     public Game() {
         world = new World();

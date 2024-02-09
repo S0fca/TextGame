@@ -5,28 +5,48 @@ public class Player {
     private Location currentLocation;
     private Backpack backpack;
 
-    public void moveUp() {
-        if (currentLocation.getUp() != null) {
-            if (!currentLocation.getUp().getName().equals("void")) currentLocation = currentLocation.getUp();
+    public boolean moveUp() {
+        try {
+            if (!currentLocation.getUp().getName().equals("void")) {
+                currentLocation = currentLocation.getUp();
+                return true;
+            }
+        } catch (NullPointerException ignored) {
         }
+        return false;
     }
 
-    public void moveDown() {
-        if (currentLocation.getDown() != null) {
-            if (!currentLocation.getDown().getName().equals("void")) currentLocation = currentLocation.getDown();
+    public boolean moveDown() {
+        try {
+            if (!currentLocation.getDown().getName().equals("void")) {
+                currentLocation = currentLocation.getDown();
+                return true;
+            }
+        } catch (NullPointerException ignored) {
         }
+        return false;
     }
 
-    public void moveLeft() {
-        if (currentLocation.getLeft() != null) {
-            if (!currentLocation.getLeft().getName().equals("void")) currentLocation = currentLocation.getLeft();
+    public boolean moveLeft() {
+        try {
+            if (!currentLocation.getLeft().getName().equals("void")) {
+                currentLocation = currentLocation.getLeft();
+                return true;
+            }
+        } catch (NullPointerException ignored) {
         }
+        return false;
     }
 
-    public void moveRight() {
-        if (currentLocation.getRight() != null) {
-            if (!currentLocation.getRight().getName().equals("void")) currentLocation = currentLocation.getRight();
+    public boolean moveRight() {
+        try {
+            if (!currentLocation.getRight().getName().equals("void")) {
+                currentLocation = currentLocation.getRight();
+                return true;
+            }
+        } catch (NullPointerException ignored) {
         }
+        return false;
     }
 
     public void setCurrentLocation(Location currentLocation) {

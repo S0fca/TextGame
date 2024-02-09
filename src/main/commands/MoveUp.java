@@ -1,9 +1,10 @@
 package main.commands;
+
 import main.Player;
 
 public class MoveUp implements Command {
 
-    Player player;
+    private final Player player;
 
     public MoveUp(Player player) {
         this.player = player;
@@ -11,8 +12,8 @@ public class MoveUp implements Command {
 
     @Override
     public String execute() {
-        player.moveUp();
-        return player.getCurrentLocation().toString();
+        if (player.moveUp()) return player.getCurrentLocation().toString();
+        return "Can't move up :(";
     }
 
     @Override
