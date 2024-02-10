@@ -33,18 +33,17 @@ public class Location {
 
     private ArrayList<Item> setItems() {
         ArrayList<Item> items = new ArrayList<>();
-        items.add(new Item("Compass", true, false));
-        items.add(new Item("Bandages", true, false));
-        items.add(new Item("Knife", true, false));
-        items.add(new Item("Medicinal Herbs", true, false));
-        items.add(new Item("Coins", true, false));
-        items.add(new Item("Flint and steal", true, false));
-        items.add(new Item("Paper", true, false));
-        items.add(new Item("Book", true, false));
-        items.add(new Item("Spyglass", true, false));
-        items.add(new Item("Chest", false, false));
-        items.add(new Item("Rock", false, false));
-
+        items.add(new Item("Compass", true));
+        items.add(new Item("Bandages", true));
+        items.add(new Item("Knife", true));
+        items.add(new Item("Medicinal Herbs", true));
+        items.add(new Item("Coins", true));
+        items.add(new Item("Flint and steal", true));
+        items.add(new Item("Paper", true));
+        items.add(new Item("Book", true));
+        items.add(new Item("Spyglass", true));
+        items.add(new Item("Chest", false));
+        items.add(new Item("Rock", false));
         return items;
     }
 
@@ -124,4 +123,9 @@ public class Location {
         return items;
     }
 
+    public void pickUpItems() {
+        for (int i = 0; i<items.size();i++) {
+            if (items.get(i).isPickUp()) items.remove(items.get(i));
+        }
+    }
 }

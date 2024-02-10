@@ -4,12 +4,10 @@ public class Item {
 
     private final String name;
     private boolean pickUp;
-    private boolean key;
 
-    public Item(String name, boolean pickUp, boolean key) {
+    public Item(String name, boolean pickUp) {
         this.name = name;
         this.pickUp = pickUp;
-        this.key = key;
     }
 
     @Override
@@ -19,5 +17,9 @@ public class Item {
 
     public String getName() {
         return name;
+    }
+
+    public boolean isPickUp() {
+        return pickUp;
     }
 }

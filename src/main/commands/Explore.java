@@ -23,11 +23,10 @@ public class Explore implements Command {
         if (items.contains("key")) {
             player.pickUpItem(player.getCurrentLocation().getKey());
             player.getCurrentLocation().getItems().remove(player.getCurrentLocation().getKey());
-        }
-
+        } else if (key == 2) key = 0;
         return "You've looked around and managed to find these items: \n"
                 + items.strip()
-                + ((key > 0) ? ((key > 1) ? "\nYou've found another key that's interesting. \nYou also decide to take it with you." : "\nYou've found a key, you look at it and decide to keep it. \nMight come in handy you think to your self.") : "");
+                + ((key > 0) ? ((key == 1) ? "\nYou've found a key, you look at it and decide to keep it. \nMight come in handy you think to your self." : "") + ((key == 2) ? "\nYou've found another key that's interesting. \nYou also decide to take it with you." : "") : "");
     }
 
     @Override

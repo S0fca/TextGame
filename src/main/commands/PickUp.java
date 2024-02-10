@@ -14,9 +14,9 @@ public class PickUp implements Command {
     @Override
     public String execute() {
         for (Item item : player.getCurrentLocation().getItems()) {
-            player.pickUpItem(item);
+            if (item.isPickUp()) player.pickUpItem(item);
         }
-        player.getCurrentLocation().getItems().removeAll(player.getCurrentLocation().getItems());
+        player.getCurrentLocation().pickUpItems();
         return "You've picked up all the items.";
     }
 

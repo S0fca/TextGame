@@ -56,10 +56,12 @@ public class World {
         }
         Random r = new Random();
         String[] keys = {"Red key", "Blue key"};
+        int num1 = -1;
         for (int i = 0; i < 2; i++) {
             int num = r.nextInt(locations.size());
-            if (!locations.get(num).getName().equals("Start") && !locations.get(num).getName().equals("End") && !locations.get(num).getName().equals("void")) {
-                locations.get(num).addKeyItem(new Item(keys[i], true, true));
+            if (!locations.get(num).getName().equals("Start") && !locations.get(num).getName().equals("End") && !locations.get(num).getName().equals("void") && num1 != num) {
+                if (num1 == -1) num1 = num;
+                locations.get(num).addKeyItem(new Item(keys[i], true));
                 System.out.println(locations.get(num));
             } else i--;
         }
