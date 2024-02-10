@@ -1,4 +1,4 @@
-package main;
+package main.world;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -10,6 +10,8 @@ import java.util.Random;
 public class World {
 
     private final ArrayList<Location> locations = new ArrayList<>();
+    private final Random r = new Random();
+
 
     public World() {
         loadFile();
@@ -37,7 +39,7 @@ public class World {
             String line = lines.get(i);
             for (int j = 0; j < line.length(); j += 4) {
                 if (line.charAt(j) == '1') start++;
-                if (line.charAt(j) == '5') end++;
+                if (line.charAt(j) == '8') end++;
                 locations.add(new Location(line.charAt(j)));
             }
         }
@@ -54,17 +56,12 @@ public class World {
             if (i < locations.size() - width) l.setDown(locations.get(i + width));
             if (i >= width) l.setUp(locations.get(i - width));
         }
-        Random r = new Random();
-        String[] keys = {"Red key", "Blue key"};
-        int num1 = -1;
-        for (int i = 0; i < 2; i++) {
-            int num = r.nextInt(locations.size());
-            if (!locations.get(num).getName().equals("Start") && !locations.get(num).getName().equals("End") && !locations.get(num).getName().equals("void") && num1 != num) {
-                if (num1 == -1) num1 = num;
-                locations.get(num).addKeyItem(new Item(keys[i], true));
-                System.out.println(locations.get(num));
-            } else i--;
-        }
+        addKeys();
+        addEntities();
+        checkWorld(start, end);
+    }
+
+    private void checkWorld(int start, int end) {
         if (start == 1 && end == 1) {
             System.out.println("World successfully loaded");
             System.out.println("You can now move around and explore :)\nWrite \"commands\" to see everything you can do!\n");
@@ -80,6 +77,32 @@ public class World {
         } else {
             System.out.println("World loaded unsuccessfully :(");
             System.exit(0);
+        }
+    }
+
+    private void addKeys() {
+        String[] keys = {"Red key", "Blue key"};
+        int num1 = -1;
+        for (int i = 0; i < keys.length; i++) {
+            int num = r.nextInt(locations.size());
+            if (!locations.get(num).getName().equals("Start") && !locations.get(num).getName().equals("End") && !locations.get(num).getName().equals("void") && num1 != num) {
+                if (num1 == -1) num1 = num;
+                locations.get(num).addKeyItem(new Item(keys[i], true));
+                System.out.println(locations.get(num));
+            } else i--;
+        }
+    }
+
+    private void addEntities() {
+        Entity[] entities = {new Entity("Friend", true,0), new Entity("Enemy", false,50), new Entity("Death", false,100)};
+        int num1 = -1;
+        for (int i = 0; i < entities.length; i++) {
+            int num = r.nextInt(locations.size());
+            if (!locations.get(num).getName().equals("Start") && !locations.get(num).getName().equals("End") && !locations.get(num).getName().equals("void") && num1 != num) {
+                if (num1 == -1) num1 = num;
+                locations.get(num).setEntity(entities[i]);
+                System.out.println(locations.get(num));
+            } else i--;
         }
     }
 

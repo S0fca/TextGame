@@ -1,4 +1,4 @@
-package main;
+package main.world;
 
 public class Item {
 
@@ -12,10 +12,6 @@ public class Item {
 
     @Override
     public String toString() {
-        return name;
-    }
-
-    public String getName() {
         return name;
     }
 

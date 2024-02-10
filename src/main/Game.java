@@ -1,5 +1,8 @@
 package main;
 
+import main.world.Location;
+import main.world.World;
+
 public class Game {
 
     private final World world;

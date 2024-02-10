@@ -1,7 +1,7 @@
 package main.commands;
 
-import main.Item;
 import main.Player;
+import main.world.Item;
 
 public class PickUp implements Command {
 

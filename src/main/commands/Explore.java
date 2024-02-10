@@ -1,7 +1,7 @@
 package main.commands;
 
-import main.Item;
 import main.Player;
+import main.world.Item;
 
 public class Explore implements Command {
 
@@ -16,17 +16,31 @@ public class Explore implements Command {
     @Override
     public String execute() {
         String items = "";
+        String text = "";
         for (Item item : player.getCurrentLocation().getItems()) {
             items += item.toString() + '\n';
-            if (item.getName().contains("key")) key += 1;
+            if (item.toString().contains("key")) key += 1;
         }
         if (items.contains("key")) {
             player.pickUpItem(player.getCurrentLocation().getKey());
             player.getCurrentLocation().getItems().remove(player.getCurrentLocation().getKey());
         } else if (key == 2) key = 0;
-        return "You've looked around and managed to find these items: \n"
-                + items.strip()
-                + ((key > 0) ? ((key == 1) ? "\nYou've found a key, you look at it and decide to keep it. \nMight come in handy you think to your self." : "") + ((key == 2) ? "\nYou've found another key that's interesting. \nYou also decide to take it with you." : "") : "");
+        if (items.length() > 0) {
+            text += "You've looked around and managed to find these items: \n" + items.strip();
+            if (key == 1) {
+                if (player.getFirstTimeInEnd())
+                    text += "\nYou've found a key, you look at it and decide to keep it. \nMight come in handy you think to yourself.";
+                else text += "\nOh you've found one of the keys, looks like it should fit";
+            }
+            if (key == 2) {
+                if (player.getFirstTimeInEnd())
+                    text += "\nYou've found another key that's interesting. \nYou also decide to take it with you.";
+                else text += "\nOh cool you've managed to find the second key!";
+            }
+        } else {
+            text += "You've looked around but didn't find anything.";
+        }
+        return text;
     }
 
     @Override

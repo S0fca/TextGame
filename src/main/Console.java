@@ -39,6 +39,7 @@ public class Console {
     }
 
     public void start() {
+        System.out.println("Health: " + player.getHealth() + "/100");
         initialization();
         do {
             execute();

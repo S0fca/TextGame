@@ -1,4 +1,4 @@
-package main;
+package main.world;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -11,20 +11,20 @@ public class Location {
     private Location left;
     private Location right;
     private final ArrayList<Item> items = new ArrayList<>();
-    private final ArrayList<Entity> entities = new ArrayList<>();
+    private Entity entity;
 
     public Location(char name) {
         setName(name);
         addItems();
-        addEntities();
     }
 
-    private void addEntities() {
+    public void setEntity(Entity entity) {
+        this.entity = entity;
     }
 
     private void addItems() {
         Random r = new Random();
-        int numberOfItems = r.nextInt(5) + 1;
+        int numberOfItems = r.nextInt(5);
         ArrayList<Item> itemsList = setItems();
         for (int i = 0; i < numberOfItems; i++) {
             items.add(itemsList.get(r.nextInt(itemsList.size())));
@@ -53,7 +53,7 @@ public class Location {
 
     public Item getKey() {
         for (Item item : items) {
-            if (item.getName().contains("key")) {
+            if (item.toString().contains("key")) {
                 return item;
             }
         }
@@ -80,7 +80,43 @@ public class Location {
                 + "Up: " + ((up != null) ? up.name : "void") + " "
                 + "Down: " + ((down != null) ? down.name : "void") + " "
                 + "Left: " + ((left != null) ? left.name : "void") + " "
-                + "Right: " + ((right != null) ? right.name : "void") + " ";
+                + "Right: " + ((right != null) ? right.name : "void") + " "
+                + entity + items;
+    }
+
+    public void pickUpItems() {
+        for (int i = 0; i < items.size(); i++) {
+            if (items.get(i).isPickUp()) items.remove(items.get(i));
+        }
+    }
+
+    public Entity getEntity() {
+        return entity;
+    }
+
+    //region setters
+
+    public void setUp(Location up) {
+        this.up = up;
+    }
+
+    public void setDown(Location down) {
+        this.down = down;
+    }
+
+    public void setLeft(Location left) {
+        this.left = left;
+    }
+
+    public void setRight(Location right) {
+        this.right = right;
+    }
+//endregion
+
+//region getters
+
+    public ArrayList<Item> getItems() {
+        return items;
     }
 
     public String getName() {
@@ -102,30 +138,6 @@ public class Location {
     public Location getRight() {
         return right;
     }
+//endregion
 
-    public void setUp(Location up) {
-        this.up = up;
-    }
-
-    public void setDown(Location down) {
-        this.down = down;
-    }
-
-    public void setLeft(Location left) {
-        this.left = left;
-    }
-
-    public void setRight(Location right) {
-        this.right = right;
-    }
-
-    public ArrayList<Item> getItems() {
-        return items;
-    }
-
-    public void pickUpItems() {
-        for (int i = 0; i<items.size();i++) {
-            if (items.get(i).isPickUp()) items.remove(items.get(i));
-        }
-    }
 }
