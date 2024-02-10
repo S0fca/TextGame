@@ -3,7 +3,7 @@ package main;
 public class Player {
 
     private Location currentLocation;
-    private Backpack backpack;
+    private Backpack backpack = new Backpack();
 
     public boolean moveUp() {
         try {
@@ -55,5 +55,13 @@ public class Player {
 
     public Location getCurrentLocation() {
         return currentLocation;
+    }
+
+    public void pickUpItem(Item item){
+        backpack.add(item);
+    }
+
+    public Backpack getBackpack() {
+        return backpack;
     }
 }

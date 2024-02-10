@@ -60,6 +60,7 @@ public class World {
             int num = r.nextInt(locations.size());
             if (!locations.get(num).getName().equals("Start") && !locations.get(num).getName().equals("End") && !locations.get(num).getName().equals("void")) {
                 locations.get(num).addKeyItem(new Item(keys[i], true, true));
+                System.out.println(locations.get(num));
             } else i--;
         }
         if (start == 1 && end == 1) {

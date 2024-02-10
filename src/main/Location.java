@@ -52,6 +52,15 @@ public class Location {
         items.add(key);
     }
 
+    public Item getKey() {
+        for (Item item : items) {
+            if (item.getName().contains("key")) {
+                return item;
+            }
+        }
+        return null;
+    }
+
     public void setName(char name) {
         switch (name) {
             case '0' -> this.name = "void";
@@ -114,4 +123,5 @@ public class Location {
     public ArrayList<Item> getItems() {
         return items;
     }
+
 }

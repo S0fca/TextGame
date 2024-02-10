@@ -24,6 +24,7 @@ public class Console {
         map.put("commands", new Commands(map));
         map.put("explore", new Explore(player));
         map.put("leave", new Leave());
+        map.put("pick up", new PickUp(player));
     }
 
     private void execute() {

@@ -13,9 +13,9 @@ public class Game {
     }
 
     public void setPlayerLocation() {
-        for (Location l : world.getLocations()) {
-            if (l.getName().equals("Start")) {
-                player.setCurrentLocation(l);
+        for (Location location : world.getLocations()) {
+            if (location.getName().equals("Start")) {
+                player.setCurrentLocation(location);
                 break;
             }
         }

@@ -6,6 +6,8 @@ import main.Player;
 public class Explore implements Command {
 
     private final Player player;
+    private int key = 0;
+
 
     public Explore(Player player) {
         this.player = player;
@@ -14,13 +16,18 @@ public class Explore implements Command {
     @Override
     public String execute() {
         String items = "";
-        boolean key = false;
         for (Item item : player.getCurrentLocation().getItems()) {
             items += item.toString() + '\n';
-            if (item.getName().contains("key")) key = true;
-
+            if (item.getName().contains("key")) key += 1;
         }
-        return "You've looked around and managed to find these items: \n" + items.strip() + ((key) ? "\n -You've found a key!" : "");
+        if (items.contains("key")) {
+            player.pickUpItem(player.getCurrentLocation().getKey());
+            player.getCurrentLocation().getItems().remove(player.getCurrentLocation().getKey());
+        }
+
+        return "You've looked around and managed to find these items: \n"
+                + items.strip()
+                + ((key > 0) ? ((key > 1) ? "\nYou've found another key that's interesting. \nYou also decide to take it with you." : "\nYou've found a key, you look at it and decide to keep it. \nMight come in handy you think to your self.") : "");
     }
 
     @Override
