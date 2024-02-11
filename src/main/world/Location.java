@@ -25,25 +25,18 @@ public class Location {
     private void addItems() {
         Random r = new Random();
         int numberOfItems = r.nextInt(5);
-        ArrayList<Item> itemsList = setItems();
+        Item[] items = setItems();
         for (int i = 0; i < numberOfItems; i++) {
-            items.add(itemsList.get(r.nextInt(itemsList.size())));
+            this.items.add(items[r.nextInt(items.length)]);
         }
     }
 
-    private ArrayList<Item> setItems() {
-        ArrayList<Item> items = new ArrayList<>();
-        items.add(new Item("Compass", true));
-        items.add(new Item("Bandages", true));
-        items.add(new Item("Knife", true));
-        items.add(new Item("Medicinal Herbs", true));
-        items.add(new Item("Coins", true));
-        items.add(new Item("Flint and steal", true));
-        items.add(new Item("Paper", true));
-        items.add(new Item("Book", true));
-        items.add(new Item("Spyglass", true));
-        items.add(new Item("Chest", false));
-        items.add(new Item("Rock", false));
+    private Item[] setItems() {
+        Item[] items = {new Item("Compass", true), new Item("Bandages", true),
+                new Item("Knife", true), new Item("Medicinal Herbs", true),
+                new Item("Rock", false), new Item("Paper", true),
+                new Item("Book", true), new Item("Chest", false),
+                new Item("Coin", true), new Item("Coin", true), new Item("Coin", true)};
         return items;
     }
 
@@ -94,7 +87,7 @@ public class Location {
         return entity;
     }
 
-    //region setters
+//region setters
 
     public void setUp(Location up) {
         this.up = up;

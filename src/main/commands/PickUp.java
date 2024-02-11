@@ -14,10 +14,10 @@ public class PickUp implements Command {
     @Override
     public String execute() {
         for (Item item : player.getCurrentLocation().getItems()) {
-            if (item.isPickUp()) player.pickUpItem(item);
+            if (item.isPickUp()) player.addOrDeleteItem(item, 1);
         }
         player.getCurrentLocation().pickUpItems();
-        return "You've picked up all the items.";
+        return "You've picked up all the items. \nYour backpack: \n" + player.getBackpack();
     }
 
     @Override

@@ -22,7 +22,8 @@ public class Explore implements Command {
             if (item.toString().contains("key")) key += 1;
         }
         if (items.contains("key")) {
-            player.pickUpItem(player.getCurrentLocation().getKey());
+            player.addOrDeleteItem(player.getCurrentLocation().getKey(),1);
+            System.out.println(player.getBackpack().toString());
             player.getCurrentLocation().getItems().remove(player.getCurrentLocation().getKey());
         } else if (key == 2) key = 0;
         if (items.length() > 0) {

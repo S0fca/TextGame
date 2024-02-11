@@ -94,12 +94,10 @@ public class World {
     }
 
     private void addEntities() {
-        Entity[] entities = {new Entity("Friend", true,0), new Entity("Enemy", false,50), new Entity("Death", false,100)};
-        int num1 = -1;
+        Entity[] entities = {new Entity("Friendly Creature", true,0), new Entity("Painful Creature", false,50), new Entity("Unfriendly Creature", false,10)};
         for (int i = 0; i < entities.length; i++) {
             int num = r.nextInt(locations.size());
-            if (!locations.get(num).getName().equals("Start") && !locations.get(num).getName().equals("End") && !locations.get(num).getName().equals("void") && num1 != num) {
-                if (num1 == -1) num1 = num;
+            if (!locations.get(num).getName().equals("Start") && !locations.get(num).getName().equals("End") && !locations.get(num).getName().equals("void") && locations.get(num).getEntity()==null) {
                 locations.get(num).setEntity(entities[i]);
                 System.out.println(locations.get(num));
             } else i--;

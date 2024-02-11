@@ -9,7 +9,7 @@ public class Entity {
     public Entity(String name, boolean friendly, int damage) {
         this.name = name;
         this.friendly = friendly;
-        this.damage = 0;
+        this.damage = damage;
     }
 
     public boolean isFriendly() {
