@@ -14,19 +14,20 @@ public class Console {
     }
 
     private boolean exit = false;
-    private final HashMap<String, Command> map = new HashMap<>();
+    private final HashMap<String, CommandInterface> map = new HashMap<>();
 
     public void initialization() {
-        map.put("up", new MoveUp(player));
-        map.put("down", new MoveDown(player));
-        map.put("left", new MoveLeft(player));
-        map.put("right", new MoveRight(player));
+        map.put("north", new MoveUp(player));
+        map.put("south", new MoveDown(player));
+        map.put("west", new MoveLeft(player));
+        map.put("east", new MoveRight(player));
         map.put("commands", new Commands(map));
         map.put("explore", new Explore(player));
         map.put("leave", new Leave());
         map.put("pick up", new PickUp(player));
         map.put("backpack", new Backpack(player));
         map.put("eat herbs", new EatHerbs(player));
+        map.put("use bandages", new UseBandages(player));
     }
 
     private void execute() {
@@ -47,6 +48,4 @@ public class Console {
             execute();
         } while (!exit);
     }
-
-
 }

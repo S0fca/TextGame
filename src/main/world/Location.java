@@ -25,19 +25,14 @@ public class Location {
     private void addItems() {
         Random r = new Random();
         int numberOfItems = r.nextInt(5);
-        Item[] items = setItems();
-        for (int i = 0; i < numberOfItems; i++) {
-            this.items.add(items[r.nextInt(items.length)]);
-        }
-    }
-
-    private Item[] setItems() {
-        Item[] items = {new Item("Compass", true), new Item("Bandages", true),
+        Item[] items = new Item[]{new Item("Compass", true), new Item("Bandages", true),
                 new Item("Knife", true), new Item("Medicinal Herbs", true),
                 new Item("Rock", false), new Item("Paper", true),
                 new Item("Book", true), new Item("Chest", false),
                 new Item("Coin", true), new Item("Coin", true), new Item("Coin", true)};
-        return items;
+        for (int i = 0; i < numberOfItems; i++) {
+            this.items.add(items[r.nextInt(items.length)]);
+        }
     }
 
     public void addKeyItem(Item key) {
@@ -69,12 +64,11 @@ public class Location {
 
     @Override
     public String toString() {
-        return "Name: " + name + " "
-                + "Up: " + ((up != null) ? up.name : "void") + " "
-                + "Down: " + ((down != null) ? down.name : "void") + " "
-                + "Left: " + ((left != null) ? left.name : "void") + " "
-                + "Right: " + ((right != null) ? right.name : "void") + " "
-                + entity + items;
+        return "You've walked into a place, it looks like (a): " + name + "\nYou look around and around you see\n"
+                + "North: " + ((up != null) ? up.name : "void") + '\n'
+                + "South: " + ((down != null) ? down.name : "void") + '\n'
+                + "West: " + ((left != null) ? left.name : "void") + '\n'
+                + "East: " + ((right != null) ? right.name : "void");
     }
 
     public void pickUpItems() {

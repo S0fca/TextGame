@@ -1,6 +1,6 @@
 package main.commands;
 
-public class Leave implements Command {
+public class Leave implements CommandInterface {
     @Override
     public String execute() {
         return "Game over";

@@ -1,6 +1,6 @@
 package main.commands;
 
-public interface Command {
+public interface CommandInterface {
 
     String execute();
 

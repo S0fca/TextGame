@@ -2,7 +2,7 @@ package main.commands;
 
 import main.Player;
 
-public class MoveDown implements Command {
+public class MoveDown implements CommandInterface {
 
     private final Player player;
 
@@ -13,7 +13,7 @@ public class MoveDown implements Command {
     @Override
     public String execute() {
         if (player.moveDown()) return player.getCurrentLocation().toString();
-        return "Can't move down :(";
+        return "Can't move south :(";
     }
 
     @Override

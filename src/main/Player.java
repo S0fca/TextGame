@@ -28,7 +28,7 @@ public class Player {
     public void checkEntities() {
         Entity entity = currentLocation.getEntity();
         if (!(entity == null)) {
-            if (entity.isFriendly()) {
+            if (entity.friendly()) {
                 boolean answer;
                 System.out.println("You've been walking for a bit and came across a creature. \nLuckily the creature seems friendly and asks you whether you'd like to buy some Medicinal Herbs"
                         + "\nin exchange for coins. The herbs can heal you by 10. \nSo would you? \nHere's your backpack: \n" + getBackpack());
@@ -47,13 +47,15 @@ public class Player {
                 } else {
                     System.out.println("\"That's alright, see you later,\" the creature says. ");
                 }
-            } else {
-                System.out.println("Entity moment xd");
-                changeHealth(-entity.getDamage());
-                System.out.println(health);
+            } else {//Enemy :(
+                System.out.println("You've been walking for a bit and came across a creature. \nYou walk closer to it but it turns out it was not friendly. ");
+                changeHealth(-entity.damage());
                 if (health <= 0) {
-                    System.out.println("You've been killed. \nGame over");
+                    System.out.println("You've been killed by the creature. \nGame over");
                     System.exit(0);
+                } else {
+                    System.out.println("You manage to run away but you've been hurt. \nYou can use bandages or eat some Medicinal Herbs to heal, if you have any of these. ");
+                    System.out.println("Your health: " + health);
                 }
                 currentLocation.setEntity(null);
             }
@@ -103,16 +105,17 @@ public class Player {
                             text += "You decide that it would be smart to try to find the keys and try to activate the portal.";
                     case 1 ->
                             text += "You remember the key, that you've found and decide to try whether it fits. \nYou put it inside and it works, but you don't have the second one so you take with you. \n\"I should try to find the second one\" you decide.";
-                    case 2 -> {
-                        text += "You remember the two keys you've found and realize, that they should fit so you try it out." + endText;
-                        System.exit(0);
-                    }
+                    case 2 ->
+                            text += "You remember the two keys you've found and realize, that they should fit, so you try it out." + endText;
                 }
                 System.out.println("As you're walking, you spot something in the distance."
                         + "\nYou continue walking closer and you discover what appears to be a portal."
                         + "\nAs you inspect the portal you think to yourself, \"Could it be a portal back home?\""
                         + "\nTaking a closer look, you notice two key holes\n"
                         + text);
+                if (numberOfKeys == 2) {
+                    System.exit(0);
+                }
             } else if (numberOfKeys == 2) {
                 System.out.println("You've gotten to the portal again and this time with both keys. You put them both in the keyholes.\n" + endText);
                 System.exit(0);
@@ -140,6 +143,7 @@ public class Player {
 
     public void changeHealth(int number) {
         health += number;
+        if (health > 100) health = 100;
     }
 
 
@@ -209,6 +213,9 @@ public class Player {
         String text = "";
         for (Item item : backpack.keySet()) {
             text += item.toString() + " " + backpack.get(item) + '\n';
+        }
+        if (text.length() == 0) {
+            text = "Your backpack is empty :(";
         }
         return text.strip();
     }

@@ -3,7 +3,7 @@ package main.world;
 public class Item {
 
     private final String name;
-    private boolean pickUp;
+    private final boolean pickUp;
 
     public Item(String name, boolean pickUp) {
         this.name = name;

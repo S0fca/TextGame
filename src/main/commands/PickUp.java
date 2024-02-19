@@ -3,7 +3,7 @@ package main.commands;
 import main.Player;
 import main.world.Item;
 
-public class PickUp implements Command {
+public class PickUp implements CommandInterface {
 
     Player player;
 

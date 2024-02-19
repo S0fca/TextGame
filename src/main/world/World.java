@@ -63,17 +63,21 @@ public class World {
 
     private void checkWorld(int start, int end) {
         if (start == 1 && end == 1) {
-            System.out.println("World successfully loaded");
-            System.out.println("You can now move around and explore :)\nWrite \"commands\" to see everything you can do!\n");
+            System.out.println("""
+                    World successfully loaded\s
+                    Write "commands" to see everything you can do.
+                    ---------------------------------------------------
+                    """);
             System.out.println("""
                     You've just woken up thinking you're at home, in your bed, just like every other day.
                     However, as your eyes open, you find yourself lying somewhere outside, somewhere unknown.
                     As you look around everything looks normal, yet not quite right - there's something off about this place.
                     The place looks nice and you're feeling pretty calm, not realizing the situation you're in just yet.
-                    As you wake up, you start walking around and exploring, after a while you begin to realize you're
-                    somewhere outside, alone with no sight of home and no idea what's going on or where you are.
+                    As you wake up, you start walking around and exploring, after a while the reality sets in:
+                    you're somewhere outside, alone with no sight of home and no idea what's going on or where you are.
                     You begin to panic a little but eventually calm down considering panic is not gonna help anything.
-                    You're now deciding what to do, you could explore a bit more or try to walk somewhere.""");
+                    Do you continue exploring or choose a direction to walk, hoping to unravel the mystery
+                    of your surroundings? The decision is yours to make.""");
         } else {
             System.out.println("World loaded unsuccessfully :(");
             System.exit(0);
@@ -94,14 +98,15 @@ public class World {
     }
 
     private void addEntities() {
-        Entity[] entities = {new Entity("Friendly Creature", true,0), new Entity("Painful Creature", false,50), new Entity("Unfriendly Creature", false,10)};
+        Entity[] entities = {new Entity(true, 0), new Entity(false, 50), new Entity(false, 10)};
         for (int i = 0; i < entities.length; i++) {
             int num = r.nextInt(locations.size());
-            if (!locations.get(num).getName().equals("Start") && !locations.get(num).getName().equals("End") && !locations.get(num).getName().equals("void") && locations.get(num).getEntity()==null) {
+            if (!locations.get(num).getName().equals("Start") && !locations.get(num).getName().equals("End") && !locations.get(num).getName().equals("void") && locations.get(num).getEntity() == null) {
                 locations.get(num).setEntity(entities[i]);
                 System.out.println(locations.get(num));
             } else i--;
         }
+        System.out.println();
     }
 
     public ArrayList<Location> getLocations() {

@@ -2,7 +2,7 @@ package main.commands;
 
 import main.Player;
 
-public class Backpack implements Command {
+public class Backpack implements CommandInterface {
 
     Player player;
 
@@ -12,9 +12,6 @@ public class Backpack implements Command {
 
     @Override
     public String execute() {
-        if (player.getBackpack().length() == 0) {
-            return "Your backpack is empty :(";
-        }
         return player.getBackpack();
     }
 
