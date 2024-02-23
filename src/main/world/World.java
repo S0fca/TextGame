@@ -64,7 +64,7 @@ public class World {
     private void checkWorld(int start, int end) {
         if (start == 1 && end == 1) {
             System.out.println("""
-                    World successfully loaded\s
+                    World successfully loaded
                     Write "commands" to see everything you can do.
                     ---------------------------------------------------
                     """);
@@ -92,7 +92,6 @@ public class World {
             if (!locations.get(num).getName().equals("Start") && !locations.get(num).getName().equals("End") && !locations.get(num).getName().equals("void") && num1 != num) {
                 if (num1 == -1) num1 = num;
                 locations.get(num).addKeyItem(new Item(keys[i], true));
-                System.out.println(locations.get(num));
             } else i--;
         }
     }
@@ -103,10 +102,8 @@ public class World {
             int num = r.nextInt(locations.size());
             if (!locations.get(num).getName().equals("Start") && !locations.get(num).getName().equals("End") && !locations.get(num).getName().equals("void") && locations.get(num).getEntity() == null) {
                 locations.get(num).setEntity(entities[i]);
-                System.out.println(locations.get(num));
             } else i--;
         }
-        System.out.println();
     }
 
     public ArrayList<Location> getLocations() {

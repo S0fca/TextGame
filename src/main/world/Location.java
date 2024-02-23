@@ -12,6 +12,7 @@ public class Location {
     private Location right;
     private final ArrayList<Item> items = new ArrayList<>();
     private Entity entity;
+    private boolean explored = false;
 
     public Location(char name) {
         setName(name);
@@ -64,7 +65,7 @@ public class Location {
 
     @Override
     public String toString() {
-        return "You've walked into a place, it looks like (a): " + name + "\nYou look around and around you see\n"
+        return "You've walked into a place, it looks like (a): " + name + "\nYou look around and you see\n"
                 + "North: " + ((up != null) ? up.name : "void") + '\n'
                 + "South: " + ((down != null) ? down.name : "void") + '\n'
                 + "West: " + ((left != null) ? left.name : "void") + '\n'
@@ -83,6 +84,9 @@ public class Location {
 
 //region setters
 
+    public void setExplored(boolean explored) {
+        this.explored = explored;
+    }
     public void setUp(Location up) {
         this.up = up;
     }
@@ -101,6 +105,11 @@ public class Location {
 //endregion
 
 //region getters
+
+
+    public boolean isExplored() {
+        return explored;
+    }
 
     public ArrayList<Item> getItems() {
         return items;

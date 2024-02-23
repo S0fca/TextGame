@@ -15,9 +15,4 @@ public class MoveUp implements CommandInterface {
         if (player.moveUp()) return player.getCurrentLocation().toString();
         return "Can't move north :(";
     }
-
-    @Override
-    public boolean exit() {
-        return false;
-    }
 }

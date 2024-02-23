@@ -28,9 +28,10 @@ public class Player {
     public void checkEntities() {
         Entity entity = currentLocation.getEntity();
         if (!(entity == null)) {
+            System.out.println("You've been walking for a bit and came across a creature.");
             if (entity.friendly()) {
                 boolean answer;
-                System.out.println("You've been walking for a bit and came across a creature. \nLuckily the creature seems friendly and asks you whether you'd like to buy some Medicinal Herbs"
+                System.out.println("Luckily the creature seems friendly and asks you whether you'd like to buy some Medicinal Herbs"
                         + "\nin exchange for coins. The herbs can heal you by 10. \nSo would you? \nHere's your backpack: \n" + getBackpack());
                 answer = getAnswer();
                 if (answer) {
@@ -39,7 +40,6 @@ public class Player {
                     } else {
                         System.out.println("How many would you like to trade?");
                         int number = getNumber(getItemNumber(new Item("Coin", true)));
-
                         addOrDeleteItem(new Item("Coin", true), -number);
                         addOrDeleteItem(new Item("Medicinal Herbs", true), number);
                         System.out.println("Here's your backpack: \n" + getBackpack());
@@ -47,15 +47,15 @@ public class Player {
                 } else {
                     System.out.println("\"That's alright, see you later,\" the creature says. ");
                 }
-            } else {//Enemy :(
-                System.out.println("You've been walking for a bit and came across a creature. \nYou walk closer to it but it turns out it was not friendly. ");
+            } else {
+                System.out.println("You walk closer to it but it turns out it was not friendly. ");
                 changeHealth(-entity.damage());
                 if (health <= 0) {
                     System.out.println("You've been killed by the creature. \nGame over");
                     System.exit(0);
                 } else {
                     System.out.println("You manage to run away but you've been hurt. \nYou can use bandages or eat some Medicinal Herbs to heal, if you have any of these. ");
-                    System.out.println("Your health: " + health);
+                    System.out.println("Your health: " + health + "/100");
                 }
                 currentLocation.setEntity(null);
             }
@@ -111,7 +111,7 @@ public class Player {
                 System.out.println("As you're walking, you spot something in the distance."
                         + "\nYou continue walking closer and you discover what appears to be a portal."
                         + "\nAs you inspect the portal you think to yourself, \"Could it be a portal back home?\""
-                        + "\nTaking a closer look, you notice two key holes\n"
+                        + "\nTaking a closer look, you notice two key holes.\n"
                         + text);
                 if (numberOfKeys == 2) {
                     System.exit(0);
@@ -129,16 +129,18 @@ public class Player {
 
     public void addOrDeleteItem(Item item, int number) {
         if (item.toString().contains("key")) numberOfKeys++;
-        boolean itemFound = false;
+        Item foundItem = null;
         for (Item i : backpack.keySet()) {
             if (i.toString().equals(item.toString())) {
                 backpack.replace(i, backpack.get(i) + number);
-                itemFound = true;
+                foundItem = i;
             }
         }
-        if (!itemFound && number > 0) {
+        if (foundItem == null && number > 0) {
             backpack.put(item, number);
+            foundItem = item;
         }
+        if (backpack.get(foundItem) == 0) backpack.remove(foundItem);
     }
 
     public void changeHealth(int number) {

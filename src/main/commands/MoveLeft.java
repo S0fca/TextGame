@@ -15,10 +15,4 @@ public class MoveLeft implements CommandInterface {
         if (player.moveLeft()) return player.getCurrentLocation().toString();
         return "Can't move west :(";
     }
-
-    @Override
-    public boolean exit() {
-        return false;
-    }
-
 }

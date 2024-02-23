@@ -14,9 +14,4 @@ public class Backpack implements CommandInterface {
     public String execute() {
         return player.getBackpack();
     }
-
-    @Override
-    public boolean exit() {
-        return false;
-    }
 }

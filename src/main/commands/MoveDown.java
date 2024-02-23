@@ -15,10 +15,4 @@ public class MoveDown implements CommandInterface {
         if (player.moveDown()) return player.getCurrentLocation().toString();
         return "Can't move south :(";
     }
-
-    @Override
-    public boolean exit() {
-        return false;
-    }
-
 }

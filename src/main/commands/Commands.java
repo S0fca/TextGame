@@ -17,8 +17,4 @@ public class Commands implements CommandInterface {
         return commands.strip();
     }
 
-    @Override
-    public boolean exit() {
-        return false;
-    }
 }

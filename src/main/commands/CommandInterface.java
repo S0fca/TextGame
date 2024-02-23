@@ -4,6 +4,8 @@ public interface CommandInterface {
 
     String execute();
 
-    boolean exit();
+    default boolean exit() {
+        return false;
+    }
 
 }

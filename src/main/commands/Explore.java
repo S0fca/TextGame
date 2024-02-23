@@ -15,6 +15,7 @@ public class Explore implements CommandInterface {
 
     @Override
     public String execute() {
+        player.getCurrentLocation().setExplored(true);
         String items = "";
         String text = "";
         for (Item item : player.getCurrentLocation().getItems()) {
@@ -40,10 +41,5 @@ public class Explore implements CommandInterface {
             text += "You've looked around but didn't find anything.";
         }
         return text;
-    }
-
-    @Override
-    public boolean exit() {
-        return false;
     }
 }

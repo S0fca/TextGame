@@ -15,14 +15,9 @@ public class EatHerbs implements CommandInterface {
     public String execute() {
         if (player.getHealth() >= 100) return "You have full health.";
         if (player.getItemNumber(new Item("Medicinal Herbs", true)) > 0) {
-            player.addOrDeleteItem(new Item("Medicinal Herbs", true), 1);
+            player.addOrDeleteItem(new Item("Medicinal Herbs", true), -1);
             player.changeHealth(10);
         } else return "You don't have any herbs :(";
         return "Your health: " + player.getHealth() + "/100";
-    }
-
-    @Override
-    public boolean exit() {
-        return false;
     }
 }
