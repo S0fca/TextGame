@@ -5,7 +5,7 @@ import main.world.Item;
 
 public class PickUp implements CommandInterface {
 
-    Player player;
+    private final Player player;
 
     public PickUp(Player player) {
         this.player = player;

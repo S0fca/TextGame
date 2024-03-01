@@ -76,8 +76,8 @@ public class World {
                     As you wake up, you start walking around and exploring, after a while the reality sets in:
                     you're somewhere outside, alone with no sight of home and no idea what's going on or where you are.
                     You begin to panic a little but eventually calm down considering panic is not gonna help anything.
-                    Do you continue exploring or choose a direction to walk, hoping to unravel the mystery
-                    of your surroundings? The decision is yours to make.""");
+                    Do you continue exploring or choose a direction to walk, hoping to unravel the mystery of your surroundings?
+                    The decision is yours to make.""");
         } else {
             System.out.println("World loaded unsuccessfully :(");
             System.exit(0);

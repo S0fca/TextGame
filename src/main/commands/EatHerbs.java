@@ -5,7 +5,7 @@ import main.world.Item;
 
 public class EatHerbs implements CommandInterface {
 
-    Player player;
+    private final Player player;
 
     public EatHerbs(Player player) {
         this.player = player;

@@ -5,7 +5,7 @@ import main.world.Item;
 
 public class UseBandages implements CommandInterface {
 
-    Player player;
+    private final Player player;
 
     public UseBandages(Player player) {
         this.player = player;

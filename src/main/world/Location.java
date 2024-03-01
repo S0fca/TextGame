@@ -6,10 +6,7 @@ import java.util.Random;
 public class Location {
 
     private String name;
-    private Location up;
-    private Location down;
-    private Location left;
-    private Location right;
+    private Location up, down, left, right;
     private final ArrayList<Item> items = new ArrayList<>();
     private Entity entity;
     private boolean explored = false;
@@ -87,6 +84,7 @@ public class Location {
     public void setExplored(boolean explored) {
         this.explored = explored;
     }
+
     public void setUp(Location up) {
         this.up = up;
     }

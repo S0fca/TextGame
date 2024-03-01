@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class Console {
 
-    Player player;
+    private final Player player;
 
     public Console(Player player) {
         this.player = player;
@@ -28,6 +28,7 @@ public class Console {
         map.put("backpack", new Backpack(player));
         map.put("eat herbs", new EatHerbs(player));
         map.put("use bandages", new UseBandages(player));
+        map.put("health", new Health(player));
     }
 
     private void execute() {
